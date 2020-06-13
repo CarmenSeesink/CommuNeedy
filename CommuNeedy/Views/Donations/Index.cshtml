@@ -1,0 +1,93 @@
+@model IEnumerable<CommuNeedy.Models.Donation>
+@*model CommuNeedy.Models.Need*@
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleasedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleasedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+<h3>Donations to specific needs</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Description)*@
+                Description
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Category)*@
+                Category
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @* foreach (var donation in Model.DonationNeeds)
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => donation.Donation.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => donation.Donation.Category)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@donation.Donation.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@donation.Donation.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@donation.Donation.Id">Delete</a>
+                </td>
+            </tr>
+        }*@
+    </tbody>
+</table>
+

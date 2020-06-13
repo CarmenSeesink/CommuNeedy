@@ -94,23 +94,22 @@ namespace CommuNeedy.Controllers
             }
         }
 
+        // Logout action
+        public async Task<IActionResult> Logout()
+        {
+            System.Diagnostics.Debug.WriteLine("Logout");
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
         // Redirect to Local
         private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
                 return Redirect(returnUrl);
             else
-                return RedirectToAction(nameof(HomeController.Index), "Home");
-        }
-
-        // Logout action
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
-        {
-            await _signInManager.SignOutAsync();
-
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(HomeController.Home), "Home");
         }
     }
 }

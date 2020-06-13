@@ -17,6 +17,46 @@ namespace CommuNeedy.Migrations
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("CommuNeedy.Models.Donation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("ReleasedDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Donation");
+                });
+
+            modelBuilder.Entity("CommuNeedy.Models.DonationNeed", b =>
+                {
+                    b.Property<int>("NeedId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DonationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("NeedId", "DonationId");
+
+                    b.HasIndex("DonationId");
+
+                    b.ToTable("DonationNeed");
+                });
+
             modelBuilder.Entity("CommuNeedy.Models.Need", b =>
                 {
                     b.Property<int>("Id")
@@ -65,9 +105,6 @@ namespace CommuNeedy.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Location")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("LockoutEnabled")
@@ -143,15 +180,15 @@ namespace CommuNeedy.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2f08dce2-7f01-4571-8bcc-e429e904cb47",
-                            ConcurrencyStamp = "b376abcc-f7ca-40ad-bd1b-4f84d9b86cff",
+                            Id = "e47c7e34-e06b-4065-a82d-d84ffcc7d395",
+                            ConcurrencyStamp = "24920b92-4316-4adf-9046-65e814825d85",
                             Name = "Vistor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "b57be691-5219-457b-ac8a-e846f28b74d2",
-                            ConcurrencyStamp = "406edcff-4e30-465c-916a-2b8733f2cf45",
+                            Id = "9b1f9301-ba7c-4bf4-93a8-08916833b061",
+                            ConcurrencyStamp = "7d2e7a64-8744-4422-a655-1df602ab192e",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -257,6 +294,28 @@ namespace CommuNeedy.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CommuNeedy.Models.Donation", b =>
+                {
+                    b.HasOne("CommuNeedy.Models.User", "Owner")
+                        .WithMany("Donations")
+                        .HasForeignKey("OwnerId");
+                });
+
+            modelBuilder.Entity("CommuNeedy.Models.DonationNeed", b =>
+                {
+                    b.HasOne("CommuNeedy.Models.Need", "Need")
+                        .WithMany("DonationNeeds")
+                        .HasForeignKey("DonationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CommuNeedy.Models.Donation", "Donation")
+                        .WithMany("DonationNeeds")
+                        .HasForeignKey("NeedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CommuNeedy.Models.Need", b =>

@@ -2,14 +2,20 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    font-family: 'Open Sans'sans-serif;
+    font-weight: 700;
+    color: white;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #4680FE;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 20px;
 }
 
 .btn-primary {
@@ -59,13 +65,126 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-color: #F8FAFF;
+    font-family: 'Open Sans', sans-serif;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+.home-heading {
+    font-weight: 700;
+    color: white;
+    font-size: 80px;
+    width: 75%;
+    margin-left: 10%;
+    color: #4680FE;
+    margin-top: 15%;
+}
+
+.home-con {
+    width: 100%;
+    display:inline-flex;
+}
+
+.home-img {
+    width: 50%;
+    background-image: url(/img/home_hand.png);
+    background-size: cover;
+    height: 470px;
+}
+
+.navbar-nav {
+    font-weight: 600;
+}
+
+.main-con {
+    width: 100%;
+}
+
+.card {
+    border: 1px solid rgba(228, 236, 255, 1) !important;
+    border-radius: 20px !important;
+    margin-top: 30px;
+}
+
+.card-title{
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.card-text{
+    font-size: 14px;
+}
+
+.card-date {
+    font-size: 12px;
+    color: #D6D9E0;
+    margin-top: 20px;
+}
+
+/* Button */
+
+.card-btns{
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.btn {
+    border: none;
+    padding: 10px 14px;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    float: right;
+    border-radius: 14px !important;
+}
+
+.btn:focus {
+    outline: none !important;
+}
+
+.edit {
+    background-color: #B9CFFF;
+    color: #4680FE;
+}
+
+.edit:hover {
+    background-color: #97B8FF;
+    color: #4680FE;
+}
+
+.details {
+    background-color: #FDEDC0;
+    color: #FFCC40;
+}
+
+.details:hover {
+    background-color: #FFE9AB;
+    color: #FFCC40;
+}
+
+
+.delete {
+    background-color: #FFC5D0;
+    color: #FB607E;
+}
+
+.delete:hover {
+    background-color: #FFA7B8;
+    color: #FB607E;
+}
+
+/* Needs */
+
+.need-head {
+    font-size: 25px;
+    font-weight: 700;
 }

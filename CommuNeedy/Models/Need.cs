@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CommuNeedy.Models
@@ -14,5 +15,8 @@ namespace CommuNeedy.Models
 
         public string OwnerId { get; set; }
         public User Owner { get; set; }
+
+        //public ICollection<Donation> Donations { get; set; }
+        public ICollection<DonationNeed> DonationNeeds { get; set; }
     }
 }

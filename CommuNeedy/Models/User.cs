@@ -8,8 +8,8 @@ namespace CommuNeedy.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Location { get; set; }
 
         public ICollection<Need> Needs { get; set; }
+        public ICollection<Donation> Donations { get; set; }
     }
 }
