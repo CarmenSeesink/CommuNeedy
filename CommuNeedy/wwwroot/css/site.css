@@ -92,6 +92,7 @@ body {
 .home-con {
     width: 100%;
     display:inline-flex;
+    margin-bottom: -40px;
 }
 
 .home-img {
@@ -187,4 +188,37 @@ body {
 .need-head {
     font-size: 25px;
     font-weight: 700;
+}
+
+/* Login */
+
+.logo-con{
+    text-align: center;
+}
+
+.logo-con img{
+    width: 20px;
+    height: 20px;
+}
+
+.about-heading {
+    width: 50%;
+    margin-left: 10%;
+    text-align:right;
+    margin-right: 11%;
+}
+
+.heading {
+    color: #4680FE;
+    margin-top: 15%;
+    font-weight: 700;
+    font-size: 80px;
+    margin-bottom: 30px;
+}
+
+.about-img {
+    width: 50%;
+    background-image: url(/img/about_hand.png);
+    background-size: cover;
+    height: 470px;
 }

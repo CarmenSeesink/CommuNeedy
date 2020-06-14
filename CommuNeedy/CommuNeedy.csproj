@@ -29,4 +29,7 @@
     <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\img\logo.png" />
+  </ItemGroup>
 </Project>
