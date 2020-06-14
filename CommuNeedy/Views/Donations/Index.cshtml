@@ -5,7 +5,39 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container">
+
+    <div class="row" style="margin-top: 80px;">
+        <h1 class="need-head col-lg-6 col-md-8">Donations</h1>
+        <p class="col-lg-6 col-md-8">
+            <a class="add" asp-action="Create"><i class="fa plus fa-plus"></i>Add donation</a>
+        </p>
+    </div>
+
+
+    <div class="row" style="margin-bottom: 60px;">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Category)</h5>
+                        <p class="card-date">@Html.DisplayFor(modelItem => item.ReleasedDate)</p>
+                        <p class="card-date">@Html.DisplayFor(modelItem => item.OwnerId)</p>
+                        <p class="card-text"> @Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                    <div class="card-btns">
+                        <a class="btn btn-primary delete" role="button" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-primary details" role="button" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-folder"></i></a>
+                        <a class="btn btn-primary edit" role="button" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@*<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -61,33 +93,32 @@
     <thead>
         <tr>
             <th>
-                @*@Html.DisplayNameFor(model => model.Description)*@
-                Description
+                Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Category)*@
+                Html.DisplayNameFor(model => model.Category)
                 Category
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @* foreach (var donation in Model.DonationNeeds)
-    {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => donation.Donation.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => donation.Donation.Category)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@donation.Donation.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@donation.Donation.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@donation.Donation.Id">Delete</a>
-                </td>
-            </tr>
-        }*@
+        foreach (var donation in Model.DonationNeeds)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => donation.Donation.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => donation.Donation.Category)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@donation.Donation.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@donation.Donation.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@donation.Donation.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
     </tbody>
-</table>
+</table>*@
 

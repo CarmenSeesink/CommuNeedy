@@ -6,15 +6,15 @@
 
     <div class="container">
        
-        <div class="row" style="margin-top: 80px; margin-bottom: 10px;">
+        <div class="row" style="margin-top: 80px;">
             <h1 class="need-head col-lg-6 col-md-8">Needs</h1>
             <p class="col-lg-6 col-md-8">
-                <a class="btn btn-primary add" asp-action="Create"><i class="fa fa-plus"></i>Add need</a>
+                <a class="add" asp-action="Create"><i class="fa plus fa-plus"></i>Add need</a>
             </p>
         </div>
 
        
-        <div class="row" style="margin-bottom: 10px;">
+        <div class="row" style="margin-bottom: 60px;">
             @foreach (var item in Model)
             {
                 <div class="col-lg-4 col-md-6">
