@@ -3,14 +3,16 @@ using System;
 using CommuNeedy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommuNeedy.Migrations
 {
     [DbContext(typeof(MvcCommuNeedyContext))]
-    partial class MvcCommuNeedyContextModelSnapshot : ModelSnapshot
+    [Migration("20200615125900_Category")]
+    partial class Category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,14 +87,8 @@ namespace CommuNeedy.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CatId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Category")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int?>("CategorySelectId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -104,8 +100,6 @@ namespace CommuNeedy.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategorySelectId");
 
                     b.HasIndex("OwnerId");
 
@@ -210,15 +204,15 @@ namespace CommuNeedy.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "29114049-d691-4d55-a733-fa7770498923",
-                            ConcurrencyStamp = "c6779ba3-3e9a-416d-9d99-7987ec26f935",
+                            Id = "4653b022-1303-4c2e-b1b6-3f7b786494e6",
+                            ConcurrencyStamp = "376c0fc9-e4ae-43cf-b16f-cceaa9b8c5ef",
                             Name = "Vistor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "1d66eb8e-7bef-4bc3-a2e1-c66bee627033",
-                            ConcurrencyStamp = "f52ec758-8fc1-43ff-b394-ca659259e5c3",
+                            Id = "4047ee86-b4c6-453c-932e-4d309119f562",
+                            ConcurrencyStamp = "49e1cae5-d872-4b94-9bcb-e27cb336c547",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -354,10 +348,6 @@ namespace CommuNeedy.Migrations
 
             modelBuilder.Entity("CommuNeedy.Models.Need", b =>
                 {
-                    b.HasOne("CommuNeedy.Models.Category", "CategorySelect")
-                        .WithMany()
-                        .HasForeignKey("CategorySelectId");
-
                     b.HasOne("CommuNeedy.Models.User", "Owner")
                         .WithMany("Needs")
                         .HasForeignKey("OwnerId");

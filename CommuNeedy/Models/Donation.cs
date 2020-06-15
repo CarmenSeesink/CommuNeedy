@@ -16,6 +16,9 @@ namespace CommuNeedy.Models
         public string OwnerId { get; set; }
         public User Owner { get; set; }
 
+        public int CatId { get; set; }
+        public Category CategorySelect { get; set; }
+
         public ICollection<DonationNeed> DonationNeeds { get; set; }
     }
 }

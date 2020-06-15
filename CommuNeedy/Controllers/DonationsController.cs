@@ -38,23 +38,6 @@ namespace CommuNeedy.Controllers
                 IEnumerable<Donation> donations = _context.Donation.ToList();
                 //    // return the view with the notes passed in
                 return View(donations);
-                //}
-                //return View(await _context.Donation.ToListAsync());
-                //User currentUser = await _context.User
-                //    .Include(n => n.Needs)
-                //    .Include(n => n.DonationNeed)
-                //        .ThenInclude(ut => ut.Needs)
-                //    .FirstOrDefaultAsync(u => u.Id == id);
-
-                //if (currentUser == null)
-                //{
-                //    return NotFound();
-                //}
-
-                // Get all notes that belong to this user
-                //IEnumerable<Todo> todos = _context.Todo.Where(todo => todo.OwnerId == id).ToList();
-                // return the view with the notes passed in
-                //return View(currentUser);
             }
             return View(await _context.Donation.ToListAsync());
 
@@ -88,6 +71,13 @@ namespace CommuNeedy.Controllers
             List<Need> allNeeds = _context.Needs.ToList();
             var selectAllNeeds = allNeeds.Select(x => new SelectListItem() { Text = x.Description, Value = x.Id.ToString()});
             ViewData["needs"] = new MultiSelectList(selectAllNeeds, "Value", "Text");
+
+
+            List<Category> allCategories = _context.Categories.ToList();
+            var selectAllCategories = allCategories.Select(x => new SelectListItem() { Text = x.CategoryName, Value = x.Id.ToString() });
+            ViewData["categories"] = new SelectList(selectAllCategories, "Value", "Text");
+
+
             return View();
 
         }
@@ -97,7 +87,7 @@ namespace CommuNeedy.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description,ReleasedDate,Category,NeedIds")] DonationViewModel donationModel)
+        public async Task<IActionResult> Create([Bind("Id,Description,ReleasedDate,Category,NeedIds, CatId")] DonationViewModel donationModel)
         {
 
             // Make sure that the todo is related to the user on create
@@ -111,9 +101,8 @@ namespace CommuNeedy.Controllers
                     Description = donationModel.Description,
                     ReleasedDate = donationModel.ReleasedDate,
                     Category = donationModel.Category,
-                    // Set the current user to the Owner field of the todo, our DbContext will be responsible for assigning the userID to OwnerID
-                    // Remember to import the userManager class to get access to the current user, use dependency injection for this
-                    Owner = _userManager.GetUserAsync(User).Result
+                    Owner = _userManager.GetUserAsync(User).Result,
+                    CategorySelect = _context.Categories.Where(cat => cat.Id == donationModel.CatId).First()
                 };
 
                 //donation.Needs = new List<Need>();
@@ -162,6 +151,7 @@ namespace CommuNeedy.Controllers
             {
                 return NotFound();
             }
+
             List<Need> allNeeds = _context.Needs.ToList();
             var selectAllNeeds = allNeeds.Select(x => new SelectListItem() { Text = x.Description, Value = x.Id.ToString(), Selected = true });
             ViewData["needs"] = new MultiSelectList(selectAllNeeds, "Value", "Text");

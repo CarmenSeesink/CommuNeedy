@@ -5,36 +5,36 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Donation</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row" style="margin-top: 40px;">
+    <div class="col-md-5 donate-img"></div>
+    <div class="col-md-7" style="padding: 170px; padding-left: 200px; padding-right: 200px;">
+        <h1 class="head">Make a donation</h1>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description" class="form-control" style="border: 1px solid #E4ECFF;" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
+                <label asp-for="Category" class="control-label">Amount</label>
+                <input asp-for="Category" class="form-control" style="border: 1px solid #E4ECFF;" />
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <select id="multiple" multiple="multiple" asp-for="NeedIds" asp-items="ViewBag.Needs">
                 <option value="">-- Choose a need --</option>
             </select>
+            <select asp-for="CatId" asp-items="ViewBag.Categories">
+                <option value="">-- Select a category --</option>
+            </select>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Post" class="btn btn-primary" style="padding-left: 50px !important; background-color: #4680FE !important; padding-right: 50px !important; border-radius: 8px !important; font-weight: 600 !important; margin-right: 0px" />
             </div>
         </form>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

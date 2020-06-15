@@ -85,20 +85,26 @@ body {
     font-size: 80px;
     width: 75%;
     margin-left: 10%;
-    color: #4680FE;
-    margin-top: 15%;
+    /*color: #4680FE;*/
+    margin-top: 20%;
 }
 
 .home-con {
     width: 100%;
     display: inline-flex;
+    background-image: url(/img/background_people.jpg);
     margin-bottom: -40px;
     background-size: cover;
+    height: 600px;
 }
 
-.background-img {
-    background-image: url(/img/background_people.jpg);
+.about-con {
+    width: 100%;
+    display: inline-flex;
+    background-image: url(/img/background_box.png);
+    margin-bottom: -40px;
     background-size: cover;
+    height: 560px;
 }
 
 .home-img {
@@ -114,6 +120,7 @@ body {
 
 .main-con {
     width: 100%;
+    margin-top: -40px;
 }
 
 .card {
@@ -211,6 +218,26 @@ a{
     text-decoration: none !important;
 }
 
+.head{
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.need-img {
+    display: inline-flex;
+    background-image: url(/img/need.png);
+    background-size: cover;
+    height: 800px;
+}
+
+.donate-img {
+    display: inline-flex;
+    background-image: url(/img/donate.png);
+    background-size: cover;
+    height: 800px;
+}
+
 /* Login */
 
 .logo-con{
@@ -227,10 +254,11 @@ a{
     margin-left: 10%;
     text-align:right;
     margin-right: 11%;
+    color: white;
+    margin-top: 40px;
 }
 
 .heading {
-    color: #4680FE;
     margin-top: 15%;
     font-weight: 700;
     font-size: 80px;
@@ -242,6 +270,10 @@ a{
     background-image: url(/img/about_hand.png);
     background-size: cover;
     height: 470px;
+}
+
+.about {
+    width: 50%;
 }
 
 /*=== Trigger  ===*/

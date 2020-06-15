@@ -199,3 +199,4 @@
 /Users/CarmenSeesink/Documents/GitHub/CommuNeedy/CommuNeedy/CommuNeedy/obj/Debug/netcoreapp3.1/CommuNeedy.dll
 /Users/CarmenSeesink/Documents/GitHub/CommuNeedy/CommuNeedy/CommuNeedy/obj/Debug/netcoreapp3.1/CommuNeedy.pdb
 /Users/CarmenSeesink/Documents/GitHub/CommuNeedy/CommuNeedy/CommuNeedy/obj/Debug/netcoreapp3.1/CommuNeedy.genruntimeconfig.cache
+/Users/CarmenSeesink/Documents/GitHub/CommuNeedy/CommuNeedy/CommuNeedy/obj/Debug/netcoreapp3.1/CommuNeedy.csprojAssemblyReference.cache

@@ -34,14 +34,24 @@ namespace CommuNeedy.Controllers
                 // Get the id of the current loggedin user
                 string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 // Get all needs that belong to this user
-                IEnumerable<Need> needs = _context.Needs.Where(need => need.OwnerId == id).ToList();
+                // IEnumerable<Need> needs = _context.Needs.Where(need => need.OwnerId == id).ToList();
+                NeedsViewModel allNeeds = new NeedsViewModel
+                {
+                    GeneralNeeds = await _context.Needs.ToListAsync(),
+                    UserNeeds = _context.Needs.Where(need => need.OwnerId == id).ToList(),
+                    NeedsWithDonations = _context.Needs
+                    .Include(n => n.DonationNeeds)
+                    .ThenInclude(dn => dn.Donation)
+                    .ToList()
+                };
                 // return the view with the needs passed in
-                return View(needs);
+                return View(allNeeds);
             }
             return View(await _context.Needs.ToListAsync());
         }
 
         // GET: Needs/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -62,6 +72,10 @@ namespace CommuNeedy.Controllers
         // GET: Needs/Create
         public IActionResult Create()
         {
+            List<Category> allCategories = _context.Categories.ToList();
+            var selectAllCategories = allCategories.Select(x => new SelectListItem() { Text = x.CategoryName, Value = x.Id.ToString() });
+            ViewData["categories"] = new SelectList(selectAllCategories, "Value", "Text");
+
             return View();
         }
 
@@ -70,7 +84,7 @@ namespace CommuNeedy.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description,ReleaseDate,Category")] Need needModel)
+        public async Task<IActionResult> Create([Bind("Id,Description,ReleaseDate,Category, CatId")] Need needModel)
         {
             if (ModelState.IsValid)
             {
@@ -82,10 +96,10 @@ namespace CommuNeedy.Controllers
                     Description = needModel.Description,
                     ReleaseDate = needModel.ReleaseDate,
                     Category = needModel.Category,
-                    // Set the current user to the Owner field of the todo, our DbContext will be responsible for assigning the userID to OwnerID
-                    // Remember to import the userManager class to get access to the current user, use dependency injection for this
-                    Owner = _userManager.GetUserAsync(User).Result
+                    Owner = _userManager.GetUserAsync(User).Result,
+                    CategorySelect = _context.Categories.Where(cat => cat.Id == needModel.CatId).First()
                 };
+
                 _context.Add(need);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

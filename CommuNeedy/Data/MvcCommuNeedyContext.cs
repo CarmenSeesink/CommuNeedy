@@ -44,5 +44,6 @@ namespace CommuNeedy.Data
         public DbSet<User> User { get; set; }
         public DbSet<Donation> Donation { get; set; }
         public DbSet<DonationNeed> DonationNeed { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
