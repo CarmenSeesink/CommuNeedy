@@ -27,7 +27,7 @@
    * [Post a need](#post-a-need)
    * [Make a donation](#make-a-donation)
    * [User authentication](#user-authentication)
-   * [Create a profile](#create-a-profile))
+   * [Create a profile](#create-a-profile)
 * [Contributing](#contributing)
 * [License](#license)
 * [Acknowledgements](#acknowledgements)
@@ -87,7 +87,7 @@ Ensure that your data remains secure.
 
 ### Create a profile
 
-Create a profile with a manifesto so other users can get to know you.
+Create a profile so other users can get to know you.
 
 ![image3][image3] 
 
