@@ -105,12 +105,6 @@ namespace CommuNeedy.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(needModel);
-
-            //    _context.Add(need);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(need);
         }
 
         // GET: Needs/Edit/5

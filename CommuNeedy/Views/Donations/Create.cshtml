@@ -7,7 +7,7 @@
 
 <div class="row" style="margin-top: 40px;">
     <div class="col-md-5 donate-img"></div>
-    <div class="col-md-7" style="padding: 170px; padding-left: 200px; padding-right: 200px;">
+    <div class="col-md-7" style="padding: 60px; padding-left: 200px; padding-right: 200px;">
         <h1 class="head">Make a donation</h1>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -16,19 +16,50 @@
                 <input asp-for="Description" class="form-control" style="border: 1px solid #E4ECFF;" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+            <label asp-for="NeedIds" class="control-label">Attend to someone's need</label>
+            <select id="multiple" multiple="multiple" asp-for="NeedIds" asp-items="ViewBag.Needs" class="form-control" style="border: 1px solid #E4ECFF;">
+            </select>
+            <label asp-for="CatId" class="control-label" style="margin-top: 20px;">Select a category</label>
+            <select asp-for="CatId" asp-items="ViewBag.Categories" class="form-control" style="border: 1px solid #E4ECFF; margin-bottom: 20px;">
+                <option>---</option>
+            </select>
             <div class="form-group">
                 <label asp-for="Category" class="control-label">Amount</label>
-                <input asp-for="Category" class="form-control" style="border: 1px solid #E4ECFF;" />
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="border: 1px solid #E4ECFF; background-color: #97B8FF; color: #4680FE">R</span>
+                    </div>
+                    <input asp-for="Category" class="form-control" style="border: 1px solid #E4ECFF;" />
+                    <div class="input-group-append">
+                        <span class="input-group-text" style="border: 1px solid #E4ECFF; background-color: #97B8FF; color: #4680FE">.00</span>
+                    </div>
+                </div>
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
-            <select id="multiple" multiple="multiple" asp-for="NeedIds" asp-items="ViewBag.Needs">
-                <option value="">-- Choose a need --</option>
-            </select>
-            <select asp-for="CatId" asp-items="ViewBag.Categories">
-                <option value="">-- Select a category --</option>
-            </select>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCard">Card number</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="border: 1px solid #E4ECFF; background-color: #97B8FF; color: #4680FE"><i class="fa fa-credit-card"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="inputCard"  style="border: 1px solid #E4ECFF;">
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputType">Card type</label>
+                    <select id="inputType" class="form-control">
+                        <option selected>Visa</option>
+                        <option>Mastercard</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputCvv">CVV</label>
+                    <input type="text" class="form-control" id="inputCvv">
+                </div>
+            </div>
             <div class="form-group">
-                <input type="submit" value="Post" class="btn btn-primary" style="padding-left: 50px !important; background-color: #4680FE !important; padding-right: 50px !important; border-radius: 8px !important; font-weight: 600 !important; margin-right: 0px" />
+                <input type="submit" value="Donate" class="btn btn-primary" style="padding-left: 50px !important; background-color: #4680FE !important; padding-right: 50px !important; border-radius: 8px !important; font-weight: 600 !important; margin-right: 0px" />
             </div>
         </form>
         <div>

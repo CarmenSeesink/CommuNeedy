@@ -15,12 +15,13 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ReleaseDate" class="control-label"></label>
+                <label asp-for="ReleaseDate" class="control-label">Post date</label>
                 <input asp-for="ReleaseDate" class="form-control" style="border: 1px solid #E4ECFF;" />
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
-            <select asp-for="CatId" asp-items="ViewBag.Categories">
-                <option value="">-- Select a category --</option>
+            <label asp-for="CatId" class="control-label">Select a category</label>
+            <select asp-for="CatId" asp-items="ViewBag.Categories" class="form-control" style="border: 1px solid #E4ECFF; margin-bottom: 20px;">
+                <option>---</option>
             </select>
             <div class="form-group">
                 <input type="submit" value="Post" class="btn btn-primary" style="padding-left: 50px !important; background-color: #4680FE !important; padding-right: 50px !important; border-radius: 8px !important; font-weight: 600 !important; margin-right: 0px" />

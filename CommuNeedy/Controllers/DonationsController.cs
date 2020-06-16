@@ -35,13 +35,20 @@ namespace CommuNeedy.Controllers
                 // Get the id of the current loggedin user
                 string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 // Get all notes that belong to this user
-                IEnumerable<Donation> donations = _context.Donation.ToList();
+                //IEnumerable<Donation> donations = _context.Donation.ToList();
+                DonationViewModel allDonations = new DonationViewModel
+                {
+                    GeneralDonations = await _context.Donation.ToListAsync(),
+                    UserDonations = _context.Donation.Where(need => need.OwnerId == id).ToList(),
+                    DonationswithNeeds = _context.Donation
+                      .Include(n => n.DonationNeeds)
+                      .ThenInclude(dn => dn.Need)
+                      .ToList()
+                };
                 //    // return the view with the notes passed in
-                return View(donations);
+                return View(allDonations);
             }
             return View(await _context.Donation.ToListAsync());
-
-
         }
 
         // GET: Donations/Details/5

@@ -5,91 +5,58 @@
     ViewData["Title"] = "Index";
 }
 
-    <div class="container">
-
-        <div class="row" style="margin-top: 80px;">
-            <h1 class="need-head col-lg-6 col-md-8">Needs</h1>
-            <p class="col-lg-6 col-md-8">
-                <a class="add" asp-action="Create"><i class="fa plus fa-plus"></i>Add need</a>
-            </p>
-        </div>
-
-
-        <div class="row" style="margin-bottom: 60px;">
-            @foreach (var item in Model.GeneralNeeds)
+<div class="container">
+    <div class="row" style="margin-top: 80px;">
+        <h1 class="need-head col-lg-6 col-md-8">All Needs</h1>
+        <p class="col-lg-6 col-md-8">
+            <a class="add" asp-action="Create"><i class="fa plus fa-plus"></i>Add need</a>
+        </p>
+    </div>
+    <div class="row" style="margin-bottom: 50px;">
+        @foreach (var item in Model.NeedsWithDonations)
+        {
+            @if (item.DonationNeeds != null)
             {
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Category)</h5>
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Description)</h5>
                             <p class="card-date">@Html.DisplayFor(modelItem => item.ReleaseDate)</p>
-                            <p class="card-text"> @Html.DisplayFor(modelItem => item.Description)</p>
                         </div>
                         <div class="card-btns">
-                            <a class="btn btn-primary delete" role="button" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
-                            <a class="btn btn-primary details" role="button" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-folder"></i></a>
-                            <a class="btn btn-primary edit" role="button" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-        <h1 class="need-head">My needs</h1>
-        <div class="row" style="margin-bottom: 50px;">
-            @foreach (var item in Model.UserNeeds)
-            {
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Category)</h5>
-                            <p class="card-date">@Html.DisplayFor(modelItem => item.ReleaseDate)</p>
-                            <p class="card-text"> @Html.DisplayFor(modelItem => item.Description)</p>
-                        </div>
-                        <div class="card-btns">
-                            <a class="btn btn-primary delete" role="button" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
-                            <a class="btn btn-primary details" role="button" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-folder"></i></a>
-                            <a class="btn btn-primary edit" role="button" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-        <h1 class="need-head">Needs attended to</h1>
-        <div class="row" style="margin-bottom: 50px;">
-            @foreach (var item in Model.NeedsWithDonations)
-            {
-                @if (item.DonationNeeds != null)
-                {
-
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Category)</h5>
-                            <p class="card-date">@Html.DisplayFor(modelItem => item.ReleaseDate)</p>
-                            <p class="card-text"> @Html.DisplayFor(modelItem => item.Description)</p>
                             @if (item.DonationNeeds != null)
                             {
-                                <p>Needs included</p>
-                                <p>@Html.DisplayFor(modelItem => item.DonationNeeds.Count)</p>
+                                <p style="color:#D6D9E0; float:left; margin-top:11px; margin-left: 20px;">@Html.DisplayFor(modelItem => item.DonationNeeds.Count)<i class="fa fa-cube" style="margin-left: 5px;"></i></p>
                             }
+                            <a class="btn btn-primary details" role="button" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-folder"></i></a>
                             @foreach (var donationNeed in item.DonationNeeds)
                             {
-
-
-                                <p>@Html.DisplayFor(modelItem => donationNeed.Donation.Description)</p>
+                                <img class="profile" alt="profile" src="~/img/profile.png" style="width: 38px; height: 38px; margin-right:5px; float:right;" />
 
                             }
-                        </div>
-                        <div class="card-btns">
-                            <a class="btn btn-primary delete" role="button" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
-                            <a class="btn btn-primary details" role="button" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-folder"></i></a>
-                            <a class="btn btn-primary edit" role="button" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
                         </div>
                     </div>
                 </div>
-                    }
-                }
-        </div>
-
+            }
+        }
     </div>
+    <h1 class="need-head">My Needs</h1>
+    <div class="row" style="margin-bottom: 50px;">
+        @foreach (var item in Model.UserNeeds)
+        {
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Description)</h5>
+                        <p class="card-date">@Html.DisplayFor(modelItem => item.ReleaseDate)</p>
+                    </div>
+                    <div class="card-btns" style="margin-bottom: 20px;">
+                        <a class="btn btn-primary delete" role="button" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-primary details" role="button" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-folder"></i></a>
+                        <a class="btn btn-primary edit" role="button" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

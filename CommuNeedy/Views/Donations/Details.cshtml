@@ -4,39 +4,41 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="row" style="margin-top: 40px;">
+    <div class="col-md-7" style="padding: 200px;">
+        <h1 class="head">Donation overview</h1>
+        <dl class="row">
+            <dt class="col-4">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-8">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-4">
+                Date created
+            </dt>
+            <dd class="col-8">
+                @Html.DisplayFor(model => model.ReleasedDate)
+            </dd>
+            <dt class="col-4">
+                Amount
+            </dt>
+            <dd class="col-8">
+                R @Html.DisplayFor(model => model.Category),00
+            </dd>
+            <dt class="col-4">
+                @Html.DisplayNameFor(model => model.Owner)
+            </dt>
+            <dd class="col-8">
+                @Html.DisplayFor(model => model.OwnerId)
+            </dd>
+        </dl>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+    <div class="col-md-5 donate-img2"></div>
+</div>
 
-<div>
-    <h4>Donation</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleasedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReleasedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Owner)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Owner.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+

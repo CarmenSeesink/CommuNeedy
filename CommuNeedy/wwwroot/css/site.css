@@ -131,7 +131,7 @@ body {
 
 .card-title{
     font-weight: 700;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .card-text{
@@ -147,13 +147,13 @@ body {
 /* Button */
 
 .card-btns{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-right: 10px;
 }
 
 .btn {
     border: none;
-    padding: 10px 14px;
+    padding: 8px 12px;
     font-size: 16px;
     margin-right: 10px;
     cursor: pointer;
@@ -231,11 +231,29 @@ a{
     height: 800px;
 }
 
+.need-img2 {
+    display: inline-flex;
+    background-image: url(/img/need2.png);
+    background-size: cover;
+    height: 800px;
+}
+
 .donate-img {
     display: inline-flex;
     background-image: url(/img/donate.png);
     background-size: cover;
     height: 800px;
+}
+
+.donate-img2 {
+    display: inline-flex;
+    background-image: url(/img/donate2.png);
+    background-size: cover;
+    height: 800px;
+}
+
+label{
+    font-weight: 600 !important;
 }
 
 /* Login */

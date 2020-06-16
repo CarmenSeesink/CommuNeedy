@@ -18,6 +18,9 @@ namespace CommuNeedy.Models
 
         public int CatId { get; set; }
 
+        public ICollection<Donation> GeneralDonations { get; set; }
+        public ICollection<Donation> UserDonations { get; set; }
+        public ICollection<Donation> DonationswithNeeds { get; set; }
         public ICollection<DonationNeed> DonationNeed { get; set; }
         public List<int> NeedIds { get; set; }
     }
