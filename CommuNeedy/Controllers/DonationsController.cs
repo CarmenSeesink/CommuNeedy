@@ -34,8 +34,7 @@ namespace CommuNeedy.Controllers
             {
                 // Get the id of the current loggedin user
                 string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                // Get all notes that belong to this user
-                //IEnumerable<Donation> donations = _context.Donation.ToList();
+        
                 DonationViewModel allDonations = new DonationViewModel
                 {
                     GeneralDonations = await _context.Donation.ToListAsync(),
@@ -45,7 +44,7 @@ namespace CommuNeedy.Controllers
                       .ThenInclude(dn => dn.Need)
                       .ToList()
                 };
-                //    // return the view with the notes passed in
+                
                 return View(allDonations);
             }
             return View(await _context.Donation.ToListAsync());
@@ -60,8 +59,6 @@ namespace CommuNeedy.Controllers
             }
 
             var donation = await _context.Donation
-                //.Include(d => d.DonationNeed)
-                //.ThenInclude(dn => dn.Need)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (donation == null)
@@ -97,13 +94,12 @@ namespace CommuNeedy.Controllers
         public async Task<IActionResult> Create([Bind("Id,Description,ReleasedDate,Category,NeedIds, CatId")] DonationViewModel donationModel)
         {
 
-            // Make sure that the todo is related to the user on create
             if (ModelState.IsValid)
             {
-                // 1. Create a new Todo object
+                // 1. Create a new 
                 var donation = new Donation
                 {
-                    // 2. Set values from (todoModel) to the new todo keys
+                    // 2. Set values 
                     Id = donationModel.Id,
                     Description = donationModel.Description,
                     ReleasedDate = donationModel.ReleasedDate,
@@ -112,7 +108,6 @@ namespace CommuNeedy.Controllers
                     CategorySelect = _context.Categories.Where(cat => cat.Id == donationModel.CatId).First()
                 };
 
-                //donation.Needs = new List<Need>();
                 donation.DonationNeeds = new List<DonationNeed>();
 
                 if (donationModel.NeedIds != null)
@@ -168,7 +163,6 @@ namespace CommuNeedy.Controllers
             viewModel.Description = donation.Description;
             viewModel.Category = donation.Category;
             viewModel.Owner = _userManager.GetUserAsync(User).Result;
-            //viewModel.DonationNeed = donation.DonationNeed;
 
             viewModel.NeedIds = new List<int>();
             return View(viewModel);
@@ -207,7 +201,6 @@ namespace CommuNeedy.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            //ViewData["OwnerId"] = new SelectList(_context.User, "Id", "Id", donation.OwnerId);
             return View(donation);
         }
 

@@ -33,8 +33,8 @@ namespace CommuNeedy.Controllers
             {
                 // Get the id of the current loggedin user
                 string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
                 // Get all needs that belong to this user
-                // IEnumerable<Need> needs = _context.Needs.Where(need => need.OwnerId == id).ToList();
                 NeedsViewModel allNeeds = new NeedsViewModel
                 {
                     GeneralNeeds = await _context.Needs.ToListAsync(),
@@ -88,10 +88,10 @@ namespace CommuNeedy.Controllers
         {
             if (ModelState.IsValid)
             {
-                // 1. Create a new object
+                // 1. Create a new 
                 var need = new Need
                 {
-                    // 2. Set values from (todoModel) to the new todo keys
+                    // 2. Set values fr
                     Id = needModel.Id,
                     Description = needModel.Description,
                     ReleaseDate = needModel.ReleaseDate,
